@@ -1,7 +1,6 @@
 {
 	"name": "llp-sveltekit",
 	"version": "0.0.1",
-	"private": true,
 	"scripts": {
 		"dev": "vite dev --port 3002",
 		"build": "vite build",
@@ -12,7 +11,8 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"netlify": "netlify dev --live",
 		"functions": "netlify functions:serve --port 9000",
-		"stripe": "stripe listen --forward-to localhost:5173/api/stripe-webhook"
+		"stripe": "stripe listen --forward-to localhost:5173/api/stripe-webhook",
+		"postinstall": "prisma generate"
 	},
 	"prisma": {
 		"seed": "node --loader ts-node/esm prisma/seed.ts"
@@ -59,6 +59,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"ui": "*",
+		"land-model": "*",
 		"@aws-sdk/client-mediaconvert": "^3.287.0",
 		"@aws-sdk/client-s3": "^3.281.0",
 		"@aws-sdk/client-ses": "^3.295.0",
