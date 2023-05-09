@@ -517,7 +517,9 @@ export class Marker {
       );
       if (pickResult?.hit && pickResult.pickedSprite) {
         this.babylonScene.markers.forEach((marker) => {
-          marker.active = marker.spriteDefault === pickResult.pickedSprite;
+          marker.active = [marker.spriteDefault, marker.spriteActive].includes(
+            pickResult.pickedSprite as BABYLON.Sprite
+          );
           marker.changeState();
         });
       }
@@ -582,6 +584,7 @@ export class Marker {
   }
 
   changeState(): void {
+    if (this.spriteLoading.isVisible) return;
     if (this.active) {
       this.spriteActive.isVisible = true;
       this.spriteActive.isPickable = true;
