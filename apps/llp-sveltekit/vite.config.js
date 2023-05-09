@@ -11,7 +11,11 @@ const config = {
 				additionalData: '@use "src/variables.scss" as *;'
 			}
 		}
-	}
+	},
+	ssr: {
+		// fix popperjs import error https://github.com/sveltejs/kit/issues/2161#issuecomment-1252026388
+        noExternal: ['@popperjs/core']
+    }
 };
 
 export default config;

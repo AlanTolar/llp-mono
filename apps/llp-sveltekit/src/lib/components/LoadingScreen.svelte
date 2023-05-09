@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import { Spinner } from 'sveltestrap';
+	import { Spinner } from 'sveltestrap';
 
 	export let text = '';
 	export let backgroundColor = '';
@@ -9,7 +9,7 @@
 </script>
 
 <div
-	class="d-flex flex-column justify-content-center align-items-center h-100 text-center "
+	class="d-flex flex-column justify-content-center align-items-center h-100 text-center"
 	bind:clientWidth={containerWidth}
 	style="background-color: {backgroundColor}; overflow: hidden;"
 >
@@ -22,7 +22,7 @@
 			{text}
 		</span>
 		{#if loading}
-			<!-- <Spinner class="" color="primary" /> -->
+			<Spinner class="" color="primary" />
 		{/if}
 	</div>
 </div>
