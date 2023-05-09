@@ -2,7 +2,7 @@
 	import { Map, Parcels, Geocoder } from '$lib/scripts/parcelMap';
 	import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 	import { onMount } from 'svelte';
-	import '$lib/styles/geocoder-style.css';
+	import '$lib/styles/geocoder-style.css'; //need local style, cdn does not work
 	import { BabylonScene } from 'land-model';
 	import type { ComponentEvent } from 'land-model';
 	import { TabContent, TabPane, Table, Spinner } from 'sveltestrap';
