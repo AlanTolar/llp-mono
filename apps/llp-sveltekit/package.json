@@ -12,7 +12,8 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"netlify": "netlify dev --live",
 		"functions": "netlify functions:serve --port 9000",
-		"stripe": "stripe listen --forward-to localhost:5173/api/stripe-webhook"
+		"stripe": "stripe listen --forward-to localhost:5173/api/stripe-webhook",
+		"postinstall": "prisma generate"
 	},
 	"prisma": {
 		"seed": "node --loader ts-node/esm prisma/seed.ts"
