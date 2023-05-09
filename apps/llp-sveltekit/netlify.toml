@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[[headers]]
+  # Define which paths this specific [[headers]] block will cover.
+  for = "/*"
+  [headers.values]
+    # Allows sandboxed iframe to be embedded into any site
+    Access-Control-Allow-Origin = "*"

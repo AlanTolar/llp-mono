@@ -1,0 +1,225 @@
+// CLEAR CACHE ON NETLIFY WHEN UPDATING CLIENT
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+  // binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("PRIVATE_DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id             String    @id @unique
+  email          String    @unique
+  email_verified Boolean   @default(false)
+  role           UserRole  @default(USER)
+  session        Session[]
+  Key            Key[]
+  account        Account?
+
+  @@map("user")
+}
+
+model Session {
+  id             String @id @unique
+  active_expires BigInt
+  idle_expires   BigInt
+  user           User   @relation(references: [id], fields: [user_id], onDelete: Cascade)
+  user_id        String
+
+  @@index([user_id])
+  @@map("session")
+}
+
+model Key {
+  id              String   @id @unique
+  created_at      DateTime @default(now())
+  hashed_password String?
+  primary         Boolean
+  expires         BigInt?
+  user            User     @relation(references: [id], fields: [user_id], onDelete: Cascade)
+  user_id         String
+
+  @@index([user_id])
+  @@map("key")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+  FREEBIES
+}
+
+/////////////////////////////
+
+model Account {
+  id                  String     @id @unique
+  user                User       @relation(references: [id], fields: [id], onDelete: Cascade)
+  name                String?
+  date_created        DateTime   @default(now())
+  properties          Property[]
+  transactional_email Boolean    @default(true)
+  marketing_email     Boolean    @default(false)
+  emails              Email[]
+  stripe_customer_id  String?
+  purchases           Purchase[]
+  free_properties     Int        @default(3)
+
+  @@index([id])
+  @@map("account")
+}
+
+model Email {
+  id          String     @id @default(cuid())
+  date_sent   DateTime   @default(now())
+  accounts    Account[]
+  email_type  EmailType
+  email_state EmailState
+
+  @@map("email")
+}
+
+enum EmailType {
+  EMAIL_VERIFICATION
+  PASSWORD_RESET
+  MARKETING
+}
+
+enum EmailState {
+  SENT
+  FAILED
+}
+
+model Purchase {
+  id                      String    @id @default(cuid())
+  date_created            DateTime  @default(now())
+  stripe_payment_intent   String    @unique
+  paid                    Boolean   @default(false)
+  live_payment            Boolean
+  receipt_url             String?   @db.Text
+  checkout_session_object Json?
+  account                 Account?  @relation(references: [id], fields: [account_id], onDelete: SetNull)
+  account_id              String?
+  property                Property? @relation(references: [id], fields: [property_id], onDelete: SetNull)
+  property_id             String?
+
+  @@index([account_id])
+  @@index([property_id])
+  @@map("purchase")
+}
+
+// stame as status field in stripe checkout session object
+enum PaymentStatus {
+  open
+  complete
+  expired
+}
+
+// model Product {
+//   stripe_id   String     @id @unique
+//   name        String
+//   description String?
+//   price       Int
+//   live        Boolean    @default(false)
+//   purchases   Purchase[]
+
+//   @@map("product")
+// }
+
+model Property {
+  id            String     @id @default(cuid())
+  name          String
+  date_created  DateTime   @default(now())
+  multi_polygon Json
+  account       Account    @relation(references: [id], fields: [account_id], onDelete: Cascade)
+  account_id    String
+  land_model    LandModel?
+  animation     Animation?
+  purchases     Purchase[]
+
+  @@index([account_id])
+  @@map("property")
+}
+
+model LandModel {
+  id              String        @id @default(cuid())
+  user_access     Boolean       @default(false)
+  date_created    DateTime      @default(now())
+  s3_path         String?       @db.Text
+  failed_generate Boolean       @default(false)
+  property        Property      @relation(references: [id], fields: [property_id], onDelete: Cascade)
+  property_id     String        @unique
+  model_markers   ModelMarker[]
+
+  @@index([property_id])
+  @@map("land_model")
+}
+
+model ModelMarker {
+  id            String    @id @default(cuid())
+  longitude     Float
+  latitude      Float
+  s3_key        String?   @db.Text
+  pano          Boolean   @default(false)
+  order         Int
+  land_model    LandModel @relation(references: [id], fields: [land_model_id], onDelete: Cascade)
+  land_model_id String
+
+  @@index([land_model_id])
+  @@map("model_marker")
+}
+
+model Animation {
+  id          String       @id @default(cuid())
+  user_access Boolean      @default(false)
+  scenes      Json?
+  map_style   Json?
+  property    Property     @relation(references: [id], fields: [property_id], onDelete: Cascade)
+  property_id String       @unique
+  conversions Conversion[]
+
+  @@index([property_id])
+  @@map("animation")
+}
+
+model Conversion {
+  id                   String           @id @default(cuid())
+  date_created         DateTime         @default(now())
+  scenes               Json
+  map_style            Json
+  video_duration       Int
+  status               ConversionStatus @default(REQUESTED)
+  processing_progress  Float?           @default(0)
+  transcoding_progress Float?           @default(0)
+  job_id               String?
+  s3_key               String?          @db.Text
+  animation            Animation        @relation(references: [id], fields: [animation_id], onDelete: Cascade)
+  animation_id         String
+
+  @@index([animation_id])
+  @@map("conversion")
+}
+
+enum ConversionStatus {
+  REQUESTED //conversion requested by user
+
+  // Crawling steps
+  CALLED //animation conversion process requested by user.
+  ANIMATION_PROCESSING //animation currently being converted to a WebM
+  WEBM_UPLOADING //WebM successfully uploaded to S3
+  CREATING_JOB //MediaConvert job being created to convert WebM to MP4
+
+  // MediaConvert steps
+  JOB_CREATED //MediaConvert job has been created to convert WebM to MP4
+  TRANSCODING //WebM being converted to MP4
+
+  // Final state
+  COMPLETED //process of converting and uploading animation to WebM and MP4 has been completed successfully
+  ERROR_CRAWLER //error occurred while crawling the property
+  ERROR_CONVERT //error occurred while converting the webm to mp4
+  CANCELED //process canceled by the user or system and will not be completed.
+}
