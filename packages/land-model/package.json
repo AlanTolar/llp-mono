@@ -1,0 +1,17 @@
+{
+  "name": "land-model",
+  "version": "0.0.0",
+  "description": "Component for displaying Babylon.js scene of a 3D land model",
+  "type": "module",
+  "module": "index.ts",
+  "svelte": "index.ts",
+  "license": "MIT",
+  "scripts": {
+    "lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
+    "format": "prettier --write --ignore-path=../../.prettierignore ."
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "svelte": "^3.9.2"
+  }
+}

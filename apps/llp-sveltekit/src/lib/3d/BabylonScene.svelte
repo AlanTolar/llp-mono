@@ -1,5 +1,4 @@
 <script context="module" lang="ts">
-	import type { ParcelDimensions } from './ingredients';
 	export interface ComponentEvent {
 		terrainDataReady: {
 			terrainURL: string;
@@ -15,7 +14,7 @@
 	import { PUBLIC_CDN_URL } from '$env/static/public';
 	import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 	import { onMount, onDestroy } from 'svelte';
-	import { ParcelCoordinateHelper } from '$lib/scripts/parcelCoordinateHelper';
+	import { ParcelCoordinateHelper } from './parcelCoordinateHelper';
 	import { BabylonScene, Marker } from './modelScene';
 	import { canvasRGB } from 'stackblur-canvas';
 	import type { ModelMarker } from '@prisma/client';

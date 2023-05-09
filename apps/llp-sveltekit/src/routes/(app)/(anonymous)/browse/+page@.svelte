@@ -3,15 +3,16 @@
 	import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 	import { onMount } from 'svelte';
 	import '$lib/styles/geocoder-style.css';
-	import BabylonScene from '$lib/3d/BabylonScene.svelte';
-	import type { ComponentEvent } from '$lib/3d/BabylonScene.svelte';
+	import { BabylonScene } from 'land-model';
+	import type { ComponentEvent } from 'land-model';
 	import { TabContent, TabPane, Table, Spinner } from 'sveltestrap';
 	import type { SoilResponse } from './soilApiTypes';
 	import type { WeatherResponse } from './weatherApiTypes';
-	import { PUBLIC_RAPIDAPI_KEY } from '$env/static/public';
+	import { PUBLIC_RAPIDAPI_KEY, PUBLIC_MAPBOX_KEY, PUBLIC_CDN_URL } from '$env/static/public';
 	import SoilDisplay from './SoilDisplay.svelte';
 	import WeatherChart from './WeatherChart.svelte';
 	import MapDisplay from './MapDisplay.svelte';
+	import { dev } from '$app/environment';
 
 	let backgroundColor = 'gray';
 	let infoTab = 'info';
@@ -147,9 +148,11 @@
 				{#if prop_geom}
 					<BabylonScene
 						{prop_geom}
-						debugMode={true}
+						debugMode={dev}
 						fullscreenMode={true}
 						{backgroundColor}
+						cdnUrl={PUBLIC_CDN_URL}
+						mapboxToken={PUBLIC_MAPBOX_KEY}
 						on:terrainDataReady={updateTerrain}
 					/>
 				{:else}
@@ -168,7 +171,7 @@
 		>
 			<TabPane tabId="info" active style="overflow: hidden; height:100%;">
 				<span class="text-black" slot="tab"> Info </span>
-				<div class="scrollable-div  min-h-100">
+				<div class="scrollable-div min-h-100">
 					{#if propertyDetails}
 						<Table>
 							<tbody>

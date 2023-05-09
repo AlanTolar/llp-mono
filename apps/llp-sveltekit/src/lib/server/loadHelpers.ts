@@ -2,7 +2,7 @@ import { prisma } from '$lib/server/prisma';
 import type { Prisma } from '@prisma/client';
 import { error as errorKit } from '@sveltejs/kit';
 import * as z from 'zod';
-import { ParcelCoordinateHelper } from '$lib/scripts/parcelCoordinateHelper';
+import * as turf from '@turf/turf';
 
 export async function userOwnsProperty(userId: string, propertyId: string): Promise<boolean> {
 	const property = await prisma.property.findUnique({
@@ -39,10 +39,15 @@ export function parseGeomJSON(geom: Prisma.JsonValue): number[][][][] {
 
 export async function calculateBoxAndCenter(geom: Prisma.JsonValue): Promise<GeomBoxCenter> {
 	const geomArray = parseGeomJSON(geom);
-	const parcelCoordinateHelper = new ParcelCoordinateHelper(geomArray);
-	const bbox = parcelCoordinateHelper.bbox;
-	const center = parcelCoordinateHelper.center;
-
+	const multiPolygon = turf.multiPolygon(geomArray);
+	const bboxArray = turf.bbox(multiPolygon);
+	const bbox = {
+		minX: bboxArray[0],
+		minY: bboxArray[1],
+		maxX: bboxArray[2],
+		maxY: bboxArray[3]
+	};
+	const center = turf.center(multiPolygon).geometry.coordinates as [number, number];
 	return {
 		propGeom: geomArray,
 		propBox: {

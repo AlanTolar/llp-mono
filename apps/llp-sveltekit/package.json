@@ -1,7 +1,6 @@
 {
 	"name": "llp-sveltekit",
 	"version": "0.0.1",
-	"private": true,
 	"scripts": {
 		"dev": "vite dev --port 3002",
 		"build": "vite build",
@@ -60,6 +59,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"ui": "*",
+		"land-model": "*",
 		"@aws-sdk/client-mediaconvert": "^3.287.0",
 		"@aws-sdk/client-s3": "^3.281.0",
 		"@aws-sdk/client-ses": "^3.295.0",

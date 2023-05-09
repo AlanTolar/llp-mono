@@ -29,7 +29,7 @@
 					<div>
 						<h3 class="fw-bold text-center">Model Maker</h3>
 						<p class="fst-italic text-center mb-0 mt-2">
-							<small>Interactive 3D model to bring your property to life - test 2</small>
+							<small>Interactive 3D model to bring your property to life</small>
 						</p>
 					</div>
 					<p class="mt-4 mb-4 flex-grow-1">
