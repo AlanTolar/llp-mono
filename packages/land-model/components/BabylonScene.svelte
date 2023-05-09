@@ -214,11 +214,7 @@
   bind:this={canvasContainer}
   class="whole-screen"
 >
-  <canvas
-    bind:this={canvasElement}
-    class="whole-screen"
-    style="background-color: {backgroundColor};"
-  />
+  <canvas bind:this={canvasElement} class="whole-screen" />
   <div class:d-none={!showLoadingScreen} id="loadingScreen" class="whole-screen">
     <LoadingScreen text="Loading 3D Model" {backgroundColor} />
   </div>
