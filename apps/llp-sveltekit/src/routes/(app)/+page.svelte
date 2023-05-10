@@ -1,6 +1,6 @@
 <script>
 	import PricingSection from '$lib/components/PricingSection.svelte';
-	import ModelFrame from '$lib/components/ModelFrame.svelte';
+	import { ModelFrame } from 'land-model';
 
 	const agentDemoUrl = 'https://demo.landlistingpro.com';
 </script>

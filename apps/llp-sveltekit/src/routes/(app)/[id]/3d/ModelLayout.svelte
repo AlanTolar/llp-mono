@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Icon, Button, Label, Input } from 'sveltestrap';
 	import { page } from '$app/stores';
-	import ModelFrame from '$lib/components/ModelFrame.svelte';
+	import { ModelFrame } from 'land-model';
 	import { PUBLIC_3D_MODEL_PRICE_ID } from '$env/static/public';
 
 	export let s3_path: string | null;

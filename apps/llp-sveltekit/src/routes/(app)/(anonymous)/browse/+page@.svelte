@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { Map, Parcels, Geocoder } from '$lib/scripts/parcelMap';
-	import LoadingScreen from '$lib/components/LoadingScreen.svelte';
+	import { Map, Parcels, Geocoder } from 'map';
+	import { LoadingScreen } from 'land-model';
 	import { onMount } from 'svelte';
 	import '$lib/styles/geocoder-style.css'; //need local style, cdn does not work
 	import { BabylonScene } from 'land-model';
