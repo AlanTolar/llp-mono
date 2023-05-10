@@ -56,7 +56,7 @@ export class BabylonScene {
     this._camera = new BABYLON.ArcRotateCamera(
       'Camera',
       Math.PI * 1.5,
-      Math.PI / 2.3,
+      Math.PI / 2.5,
       100,
       BABYLON.Vector3.Zero(),
       this._scene
