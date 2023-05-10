@@ -21,13 +21,14 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "latest",
+		"@sveltejs/adapter-netlify": "^2.0.7",
 		"@sveltejs/kit": "latest",
 		"eslint-config-custom": "*",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.6",
-		"tslib": "^2.3.1",
 		"ts-node": "^10.9.1",
+		"tslib": "^2.3.1",
 		"typescript": "^4.7.2",
 		"vite": "^4.0.0"
 	},
