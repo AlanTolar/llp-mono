@@ -7,5 +7,5 @@
 </script>
 
 <button on:click={handleClick}>
-  clicks: {count + 1}
+  clicks: {count + 2}
 </button>
