@@ -57,7 +57,6 @@
 		"typescript": "^4.7.2",
 		"vite": "^4.0.0"
 	},
-	"type": "module",
 	"dependencies": {
 		"map": "*",
 		"land-model": "*",
@@ -129,5 +128,6 @@
 		"whammy": "^0.0.1",
 		"xmlbuilder2": "^3.1.0",
 		"zod": "^3.20.6"
-	}
+	},
+	"type": "module"
 }
