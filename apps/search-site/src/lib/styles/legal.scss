@@ -1,0 +1,130 @@
+#applyLegalCSS > body {
+	background: #fff;
+	color: #000;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 28px;
+	margin: 0;
+}
+
+#applyLegalCSS > h1 {
+	font-size: 40px;
+	line-height: 60px;
+}
+
+#applyLegalCSS > h1,
+#applyLegalCSS > h2 {
+	font-weight: 700;
+}
+
+#applyLegalCSS > h2 {
+	font-size: 32px;
+	line-height: 48px;
+}
+
+#applyLegalCSS > h3 {
+	font-size: 24px;
+	line-height: 36px;
+}
+
+#applyLegalCSS > h3,
+#applyLegalCSS > h4 {
+	font-weight: 700;
+}
+
+#applyLegalCSS > h4 {
+	font-size: 20px;
+	line-height: 30px;
+}
+
+#applyLegalCSS > h5,
+#applyLegalCSS > h6 {
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 700;
+}
+
+#applyLegalCSS > a {
+	text-decoration: none;
+	cursor: pointer;
+	color: #000;
+}
+
+#applyLegalCSS > a:hover,
+#applyLegalCSS > a[rel~='nofollow'] {
+	text-decoration: underline;
+}
+
+#applyLegalCSS > a[rel~='nofollow'] {
+	color: #0452a5;
+}
+
+#applyLegalCSS > a[rel~='nofollow']:hover {
+	text-decoration: none;
+}
+
+#applyLegalCSS > .visible {
+	display: block;
+}
+
+#applyLegalCSS > .hidden {
+	display: none;
+}
+
+#applyLegalCSS > .page {
+	width: 100%;
+}
+
+#applyLegalCSS > .container {
+	position: relative;
+	width: 90%;
+	max-width: 1024px;
+	margin: 0 auto;
+}
+
+#applyLegalCSS > .header {
+	background: #0452a5;
+	color: #fff;
+	padding: 16px 0;
+}
+
+#applyLegalCSS > .header .title {
+	font-size: 24px;
+	line-height: 36px;
+	font-weight: 700;
+	margin: 0;
+}
+
+#applyLegalCSS > .content {
+	padding-bottom: 32px;
+}
+
+#applyLegalCSS > .translations-list-container {
+	background: #253246;
+	color: #fff;
+	padding: 8px 0 0;
+	margin: 0 0 32px;
+}
+
+#applyLegalCSS > .translations-list-container .translations-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#applyLegalCSS > .translations-list-container .translations-list .translations-list-item {
+	display: inline-block;
+	padding: 0;
+	margin: 0 8px 8px 0;
+	color: #fff;
+}
+
+#applyLegalCSS > .translations-list-container .translations-list .translations-list-item a {
+	display: inline-block;
+	color: #fff;
+	padding: 4px 8px;
+}
+
+#applyLegalCSS > .translations-list-container .translations-list .translations-list-item a.active {
+	background: #334055;
+}
