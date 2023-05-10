@@ -9,6 +9,7 @@
 	import type { SoilResponse } from './soilApiTypes';
 	import type { WeatherResponse } from './weatherApiTypes';
 	import { PUBLIC_RAPIDAPI_KEY, PUBLIC_MAPBOX_KEY } from '$env/static/public';
+
 	import SoilDisplay from './SoilDisplay.svelte';
 	import WeatherChart from './WeatherChart.svelte';
 	import MapDisplay from './MapDisplay.svelte';
