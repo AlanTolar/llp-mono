@@ -77,7 +77,7 @@
     const tiles = coordHelper.tileSelection();
     const relativeCoords = coordHelper.boundaryCoordsRelativeToBounds();
     const croppingWindow = coordHelper.tileCroppingWindow();
-    // console.log('croppingWindow: ', croppingWindow);
+    console.log('croppingWindow: ', croppingWindow);
 
     // create satellite image
     const satImgs = await fetchImages('mapbox.satellite', tiles, mapboxToken);
