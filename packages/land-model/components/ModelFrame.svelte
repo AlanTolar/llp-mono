@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LoadingScreen from '$lib/components/LoadingScreen.svelte';
+	import { LoadingScreen } from 'land-model';
 	import { onDestroy, onMount } from 'svelte';
 
 	export let model_url: string;
@@ -15,7 +15,7 @@
 	});
 </script>
 
-<div id="model-container" class="ratio ratio-16x9 ">
+<div id="model-container" class="ratio ratio-16x9">
 	<LoadingScreen text={'Loading 3D Model'} />
 	<iframe
 		bind:this={modelIframe}

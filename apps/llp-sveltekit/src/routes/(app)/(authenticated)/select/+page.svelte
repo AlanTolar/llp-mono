@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { Map, Geocoder, Parcels } from '$lib/scripts/parcelMap';
+	import { Map, Geocoder, Parcels } from 'map';
 	import { onMount } from 'svelte';
 	import { kmlToGeojson, jsonToGeojson, geojsonToCoords } from './helpers';
 	import * as turf from '@turf/turf';

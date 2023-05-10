@@ -1,5 +1,5 @@
 {
-  "name": "docs",
+  "name": "search-site",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite dev --port 3001",
@@ -12,7 +12,11 @@
     "format": "prettier --write --ignore-path=../../.prettierignore ."
   },
   "dependencies": {
-    "ui": "*"
+    "bootstrap": "^5.2.3",
+    "d3": "^7.8.4",
+    "land-model": "*",
+    "map": "*",
+    "sveltestrap": "^5.10.0"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "latest",
