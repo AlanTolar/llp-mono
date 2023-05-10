@@ -8,7 +8,7 @@
 	import { TabContent, TabPane, Table, Spinner } from 'sveltestrap';
 	import type { SoilResponse } from './soilApiTypes';
 	import type { WeatherResponse } from './weatherApiTypes';
-	import { PUBLIC_RAPIDAPI_KEY, PUBLIC_MAPBOX_KEY, PUBLIC_CDN_URL } from '$env/static/public';
+	import { PUBLIC_RAPIDAPI_KEY, PUBLIC_MAPBOX_KEY } from '$env/static/public';
 	import SoilDisplay from './SoilDisplay.svelte';
 	import WeatherChart from './WeatherChart.svelte';
 	import MapDisplay from './MapDisplay.svelte';
@@ -151,7 +151,6 @@
 						debugMode={dev}
 						fullscreenMode={true}
 						{backgroundColor}
-						cdnUrl={PUBLIC_CDN_URL}
 						mapboxToken={PUBLIC_MAPBOX_KEY}
 						on:terrainDataReady={updateTerrain}
 					/>
