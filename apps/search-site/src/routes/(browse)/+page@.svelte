@@ -8,7 +8,7 @@
 	import { TabContent, TabPane, Table, Spinner } from 'sveltestrap';
 	import type { SoilResponse } from './soilApiTypes';
 	import type { WeatherResponse } from './weatherApiTypes';
-	import { PUBLIC_RAPIDAPI_KEY, PUBLIC_MAPBOX_KEY } from '$env/static/public';
+	import { PUBLIC_RAPIDAPI_KEY, PUBLIC_MAPBOX_KEY, PUBLIC_REPORTALL_KEY } from '$env/static/public';
 
 	import SoilDisplay from './SoilDisplay.svelte';
 	import WeatherChart from './WeatherChart.svelte';
@@ -106,8 +106,8 @@
 	let geocoder: Geocoder;
 	let parcels: Parcels;
 	onMount(() => {
-		map = new Map('map');
-		parcels = new Parcels(map);
+		map = new Map('map', PUBLIC_MAPBOX_KEY);
+		parcels = new Parcels(map, PUBLIC_REPORTALL_KEY);
 		parcels.on('selected', () => {
 			console.log(parcels);
 			terrainData = null;
@@ -124,7 +124,7 @@
 			};
 			prop_geom = parcels.polygonCoords;
 		});
-		geocoder = new Geocoder(map, undefined);
+		geocoder = new Geocoder(map, PUBLIC_MAPBOX_KEY, undefined);
 	});
 	let canvasHeight = 0;
 	let testBtn = 0;

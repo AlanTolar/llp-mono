@@ -6,6 +6,7 @@
 	import * as turf from '@turf/turf';
 	import '$lib/styles/geocoder-style.css';
 	import { enhance } from '$app/forms';
+	import { PUBLIC_MAPBOX_KEY, PUBLIC_REPORTALL_KEY } from '$env/static/public';
 
 	export let data: PageData;
 
@@ -32,8 +33,8 @@
 	let geocoderElement: HTMLElement;
 	let parcels: Parcels;
 	onMount(() => {
-		map = new Map('map');
-		parcels = new Parcels(map);
+		map = new Map('map', PUBLIC_MAPBOX_KEY);
+		parcels = new Parcels(map, PUBLIC_REPORTALL_KEY);
 		parcels.on('selected', () => {
 			phase = 'details';
 			const features = parcels.features.at(-1);
@@ -52,7 +53,7 @@
 			geometries = JSON.stringify(parcels.polygonCoords);
 			reportallResponse = JSON.stringify(parcels.features);
 		});
-		geocoder = new Geocoder(map, geocoderElement);
+		geocoder = new Geocoder(map, PUBLIC_MAPBOX_KEY, geocoderElement);
 	});
 
 	async function handleFileSubmit(event: SubmitEvent) {

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LoadingScreen } from 'land-model';
+	import LoadingScreen from './LoadingScreen.svelte';
 	import { onDestroy, onMount } from 'svelte';
 
 	export let model_url: string;

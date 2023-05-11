@@ -185,7 +185,7 @@
 						</div>
 					{/if}
 					{#if !showImageInput}
-						<div class="mt-1 mb-3 ">
+						<div class="mt-1 mb-3">
 							<a
 								href={PUBLIC_CDN_URL + imageUrl}
 								target="_blank"
