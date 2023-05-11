@@ -3,7 +3,7 @@
 	"version": "0.0.0",
 	"scripts": {
 		"dev": "vite dev --port 3001",
-		"build": "vite build",
+		"build": "node --max_old_space_size=16384 ./node_modules/vite/bin/vite.js build",
 		"package": "vite package",
 		"preview": "vite preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
@@ -13,6 +13,7 @@
 		"prepare": "svelte-kit sync"
 	},
 	"dependencies": {
+		"apexcharts": "^3.40.0",
 		"bootstrap": "^5.2.3",
 		"d3": "^7.8.4",
 		"land-model": "workspace:*",
@@ -32,7 +33,7 @@
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.2",
 		"vite": "^4.0.0",
-		"vite-plugin-commonjs": "^0.7.0"
+		"vite-plugin-commonjs": "^0.6.1"
 	},
 	"type": "module"
 }

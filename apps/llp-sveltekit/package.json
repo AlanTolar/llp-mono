@@ -3,7 +3,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev --port 3002",
-		"build": "vite build",
+		"build": "node --max_old_space_size=16384 ./node_modules/vite/bin/vite.js build",
 		"preview": "vite preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
@@ -71,7 +71,6 @@
 		"@uppy/file-input": "^3.0.2",
 		"@uppy/status-bar": "^3.1.2",
 		"@uppy/transloadit": "^3.1.4",
-		"apexcharts": "^3.40.0",
 		"bootstrap": "^5.2.3",
 		"cuid": "^3.0.0",
 		"d3": "^7.8.4",
