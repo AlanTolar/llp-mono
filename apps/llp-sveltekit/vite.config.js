@@ -5,6 +5,15 @@ import commonjs from 'vite-plugin-commonjs';
 const config = {
 	plugins: [sveltekit(), commonjs()],
 
+	optimizeDeps: {
+		exclude: ['canvas'],
+	  },
+	  build: {
+		rollupOptions: {
+		  external: ['canvas'],
+		},
+	  },
+
 	css: {
 		preprocessorOptions: {
 			scss: {
