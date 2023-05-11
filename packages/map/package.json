@@ -8,7 +8,8 @@
 	"license": "MIT",
 	"scripts": {
 		"lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
-		"format": "prettier --write --ignore-path=../../.prettierignore ."
+		"format": "prettier --write --ignore-path=../../.prettierignore .",
+		"preinstall": "npx only-allow pnpm"
 	},
 	"dependencies": {
 		"@mapbox/mapbox-gl-geocoder": "^5.0.1",

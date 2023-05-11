@@ -13,6 +13,7 @@
 		"functions": "netlify functions:serve --port 9000",
 		"stripe": "stripe listen --forward-to localhost:5173/api/stripe-webhook",
 		"prepare": "svelte-kit sync",
+		"preinstall": "npx only-allow pnpm",
 		"postinstall": "prisma generate"
 	},
 	"prisma": {
