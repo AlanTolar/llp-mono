@@ -25,6 +25,7 @@
 		"@sveltejs/adapter-auto": "latest",
 		"@sveltejs/adapter-netlify": "^2.0.7",
 		"@sveltejs/kit": "latest",
+		"@types/d3": "^7.4.0",
 		"autoprefixer": "^10.4.14",
 		"eslint-config-custom": "workspace:*",
 		"svelte": "^3.44.0",

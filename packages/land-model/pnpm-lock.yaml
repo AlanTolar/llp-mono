@@ -13,9 +13,6 @@ dependencies:
   babylonjs:
     specifier: ^5.42.2
     version: 5.42.2
-  babylonjs-loaders:
-    specifier: ^5.42.2
-    version: 5.42.2
   babylonjs-serializers:
     specifier: ^5.44.0
     version: 5.44.0
@@ -1201,13 +1198,6 @@ packages:
 
   /babylonjs-gltf2interface@5.57.1:
     resolution: {integrity: sha512-RZnaKfJ6Q/AYLdIjBYMRxCW/HPEC8jabAL1U8wJ0KVziw6NSbSV6S80S22fUCPTyaZ7nCekn1TYg1IPmJ/eA6w==}
-    dev: false
-
-  /babylonjs-loaders@5.42.2:
-    resolution: {integrity: sha512-jpFkYZ006VF790nh4x00xNgC6a8X6Q4zx/Fpjpzg4c3i2BkWjqp9H84cQalvKD7KA1lO/F67UcdhmpxoGMOq4A==}
-    dependencies:
-      babylonjs: 5.42.2
-      babylonjs-gltf2interface: 5.57.1
     dev: false
 
   /babylonjs-serializers@5.44.0:

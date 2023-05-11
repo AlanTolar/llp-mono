@@ -16,7 +16,6 @@
 		"stackblur-canvas": "^2.5.0",
 		"@prisma/client": "^4.11.0",
 		"babylonjs": "^5.42.2",
-		"babylonjs-loaders": "^5.42.2",
 		"babylonjs-serializers": "^5.44.0",
 		"color-convert": "^2.0.1",
 		"@mapbox/tilebelt": "^1.0.2",

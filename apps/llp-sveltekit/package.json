@@ -27,7 +27,6 @@
 		"@tailwindcss/typography": "^0.5.3",
 		"@types/bootstrap": "^5.2.6",
 		"@types/ccapture.js": "^1.1.1",
-		"@types/d3": "^7.4.0",
 		"@types/luxon": "^3.2.0",
 		"@types/mapbox-gl": "^2.7.10",
 		"@types/mapbox__mapbox-gl-geocoder": "^4.7.3",
