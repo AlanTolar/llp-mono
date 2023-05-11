@@ -2,6 +2,7 @@
   command = "pnpm run build"
   publish = "build"
   ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF . ../../packages/land-model/ ../../packages/map/"
+  environment = { PNPM_VERSION = "8.4.0" }
 
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
