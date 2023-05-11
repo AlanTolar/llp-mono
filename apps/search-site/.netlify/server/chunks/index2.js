@@ -28,8 +28,6 @@ function compute_rest_props(props, keys) {
   return rest;
 }
 /* @__PURE__ */ new Set();
-const globals = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : global;
-"WeakMap" in globals ? /* @__PURE__ */ new WeakMap() : void 0;
 function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
   const e = document.createEvent("CustomEvent");
   e.initCustomEvent(type, bubbles, cancelable, detail);
@@ -66,9 +64,10 @@ function setContext(key, context) {
 function getContext(key) {
   return get_current_component().$$.context.get(key);
 }
+Promise.resolve();
 /* @__PURE__ */ new Set();
 /* @__PURE__ */ new Set();
-const _boolean_attributes = [
+const boolean_attributes = /* @__PURE__ */ new Set([
   "allowfullscreen",
   "allowpaymentrequest",
   "async",
@@ -83,6 +82,7 @@ const _boolean_attributes = [
   "hidden",
   "inert",
   "ismap",
+  "itemscope",
   "loop",
   "multiple",
   "muted",
@@ -94,8 +94,7 @@ const _boolean_attributes = [
   "required",
   "reversed",
   "selected"
-];
-const boolean_attributes = /* @__PURE__ */ new Set([..._boolean_attributes]);
+]);
 const invalid_attribute_name_character = /[\s'">/=\u{FDD0}-\u{FDEF}\u{FFFE}\u{FFFF}\u{1FFFE}\u{1FFFF}\u{2FFFE}\u{2FFFF}\u{3FFFE}\u{3FFFF}\u{4FFFE}\u{4FFFF}\u{5FFFE}\u{5FFFF}\u{6FFFE}\u{6FFFF}\u{7FFFE}\u{7FFFF}\u{8FFFE}\u{8FFFF}\u{9FFFE}\u{9FFFF}\u{AFFFE}\u{AFFFF}\u{BFFFE}\u{BFFFF}\u{CFFFE}\u{CFFFF}\u{DFFFE}\u{DFFFF}\u{EFFFE}\u{EFFFF}\u{FFFFE}\u{FFFFF}\u{10FFFE}\u{10FFFF}]/u;
 function spread(args, attrs_to_add) {
   const attributes = Object.assign({}, ...args);
