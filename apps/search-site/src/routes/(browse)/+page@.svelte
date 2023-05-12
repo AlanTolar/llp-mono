@@ -161,9 +161,6 @@
 			{/key}
 		</div>
 
-		<!-- <button on:click={() => testBtn++}>Test</button>
-		{testBtn} -->
-
 		<TabContent
 			class="pt-3 px-3 flex-fill d-flex flex-column flex-grow-1"
 			style="overflow: hidden;"
