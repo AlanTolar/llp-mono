@@ -12,6 +12,6 @@
 
 [dev]
   command = "pnpm run dev"
-  targetPort = 3002
+  targetPort = 5173
   port = 3005
   publish = "static"

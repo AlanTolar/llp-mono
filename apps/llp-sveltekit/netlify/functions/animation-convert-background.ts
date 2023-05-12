@@ -1,8 +1,9 @@
 import { BackgroundHandler, HandlerEvent, HandlerContext } from '@netlify/functions';
 import { getBrowser } from './shared/puppeteer';
-import { connect } from '@planetscale/database'
+import { connect } from '@planetscale/database';
+import fetch from 'node-fetch';
 
-const conn = connect({ url: process.env.PRIVATE_DATABASE_URL})
+const conn = connect({ url: process.env.PRIVATE_DATABASE_URL, fetch:fetch})
 
 
 export async function updateConversionStatus(

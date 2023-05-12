@@ -44,9 +44,9 @@ export const GET: RequestHandler = async ({ params, locals, url, fetch }) => {
 	});
 
 	// crawlVideo(url.origin, params.id, conversion);
-	// const functionDomain = dev ? 'http://localhost:9000' : '';
+	const functionDomain = dev ? 'http://localhost:9000' : '';
 	// const functionDomain = dev ? 'http://localhost:8888' : '';
-	const functionDomain = ''
+	// const functionDomain = ''
 	const response = await fetch(
 		functionDomain + '/.netlify/functions/animation-convert-background',
 		{
