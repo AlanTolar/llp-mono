@@ -16,6 +16,7 @@
 	import cuid from 'cuid';
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
+	// import type {CCapture} from 'ccapture.js';
 
 	export let prop_geom: PageData['propGeom'];
 	export let prop_center: PageData['propCenter'];
@@ -24,7 +25,7 @@
 	export let conversionIdFromCrawler: false | null | string;
 
 	let map: Map;
-	let capturer: CCapture;
+	let capturer: any;
 	let mapCanvas: HTMLCanvasElement;
 	let mergeCanvas: HTMLCanvasElement;
 	let mapIsSet = false;
