@@ -1,6 +1,7 @@
 {
 	"name": "llp-sveltekit",
 	"version": "0.0.1",
+	"packageManager": "pnpm@8.4.0",
 	"scripts": {
 		"dev": "vite dev --port 3002",
 		"build": "node --max_old_space_size=16384 ./node_modules/vite/bin/vite.js build",

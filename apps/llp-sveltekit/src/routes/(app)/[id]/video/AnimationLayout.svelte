@@ -25,7 +25,7 @@
 	export let conversionIdFromCrawler: false | null | string;
 
 	let map: Map;
-	let capturer: CCapture;
+	let capturer: any;
 	let mapCanvas: HTMLCanvasElement;
 	let mergeCanvas: HTMLCanvasElement;
 	let mapIsSet = false;
