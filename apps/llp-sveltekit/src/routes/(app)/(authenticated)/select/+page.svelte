@@ -4,9 +4,9 @@
 	import { onMount } from 'svelte';
 	import { kmlToGeojson, jsonToGeojson, geojsonToCoords } from './helpers';
 	import * as turf from '@turf/turf';
-	import '$lib/styles/geocoder-style.css';
 	import { enhance } from '$app/forms';
 	import { PUBLIC_MAPBOX_KEY, PUBLIC_REPORTALL_KEY } from '$env/static/public';
+	import '$lib/styles/geocoder-style.css';
 
 	export let data: PageData;
 

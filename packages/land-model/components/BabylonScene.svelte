@@ -14,7 +14,6 @@
 	import LoadingScreen from './LoadingScreen.svelte';
 	import { onMount, onDestroy } from 'svelte';
 	import { ParcelCoordinateHelper } from './parcelCoordinateHelper';
-	import { BabylonScene, Marker } from './modelScene';
 	import { canvasRGB } from 'stackblur-canvas';
 	import type { ModelMarker } from '@prisma/client';
 
@@ -30,7 +29,7 @@
 	let canvasElement: HTMLCanvasElement;
 	let canvasContainer: HTMLDivElement;
 	let showLoadingScreen = true;
-	let babylonScene: BabylonScene | null = null;
+	let babylonScene: any = null;
 	let showDebug = false;
 	let showInstructions = false;
 	let isFullscreen = false;
@@ -68,7 +67,10 @@
 			multiPolygonToCanvas,
 			heightRangeFromCanvas
 		} = await import('./ingredients');
-
+		const {
+			BabylonScene,
+			Marker
+		} = await import('./modelScene');
 		console.time('Model Creation');
 
 		// get tile ids, relative coordinates, dimensions and coord cropping window
