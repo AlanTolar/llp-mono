@@ -128,23 +128,24 @@
 	});
 	let canvasHeight = 0;
 	let testBtn = 0;
+
+	let infoFullscreen = false;
 </script>
 
 <svelte:head>
 	<link href="https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css" rel="stylesheet" />
 </svelte:head>
-<div class="row p-0 m-0" style="width: 100vw; height: 100vh;">
-	<div class="col-xl-7 p-0 m-0">
-		<div id="map-holder">
-			<div id="map" style="width: 100%; height: 100vh;" />
-		</div>
+<div class="row p-0 m-0 h-100 w-100 position-absolute d-flex flex-column flex-md-row">
+	<div id="map-holder" class="col-xl-7 col-md-6 p-0 m-0 position-relative flex-grow-1" class:d-none={infoFullscreen}>
+		<div id="map" style="width: 100%; height: 100%;"  />
 	</div>
 	<div
 		id="info-panel"
-		class="col-xl-5 p-0 m-0 d-flex flex-column"
-		style="background-color:{backgroundColor};max-height:100vh;"
+		class="col-xl-5 col-md-6 d-flex flex-column flex-grow-0 flex-shrink-1"
+		style="background-color:{backgroundColor};min-height:200px; max-height:100vh;"
+		class:h-100={infoFullscreen}
 	>
-		<div id="model-container" class="ratio ratio-16x9 w-100" style="max-height:50vh;">
+		<div id="model-container" class="ratio ratio-16x9 w-100" style="max-height:50vh;" class:d-none={infoFullscreen}>
 			{#key prop_geom || testBtn}
 				{#if prop_geom}
 					<BabylonScene
@@ -161,12 +162,18 @@
 			{/key}
 		</div>
 
+		<div class="btn-group w-100 p-3" role="group" aria-label="Basic example" >
+			<button type="button" class="btn btn-secondary border m-auto d-md-none" style="max-width:350px;" on:click={()=>infoFullscreen=!infoFullscreen}>{infoFullscreen?'Back to Map':'View Info'}</button>
+			<button type="button" class="btn btn-secondary border m-auto" style="max-width:350px;">Find Agent</button>
+		  </div>
+
+		  <div class="d-md-block d-flex flex-column flex-grow-1" class:d-none={!infoFullscreen} style="overflow: hidden;">
 		<TabContent
-			class="pt-3 px-3 flex-fill d-flex flex-column flex-grow-1"
-			style="overflow: hidden;"
+			class="d-flex flex-column flex-grow-1"
+			style="overflow: hidden; height:100%;"
 			on:tab={(e) => (infoTab = e.detail.toString())}
 		>
-			<TabPane tabId="info" active style="overflow: hidden; height:100%;">
+			<TabPane tabId="info" active  style="overflow: hidden; height:100%;">
 				<span class="text-black" slot="tab"> Info </span>
 				<div class="scrollable-div min-h-100">
 					{#if propertyDetails}
@@ -196,7 +203,7 @@
 					{/if}
 				</div>
 			</TabPane>
-			<TabPane tabId="terrain" style="overflow: hidden; height:100%;">
+			<TabPane tabId="terrain"  style="overflow: hidden; height:100%;">
 				<span class="text-black" slot="tab"> Terrain </span>
 
 				<div bind:clientHeight={canvasHeight} style="overflow: hidden; height:100%;">
@@ -239,7 +246,7 @@
 					</div>
 				</div>
 			</TabPane>
-			<TabPane tabId="soil" style="overflow: hidden; height:100%;">
+			<TabPane tabId="soil"  style="overflow: hidden; height:100%;">
 				<span class="text-black" slot="tab"> Soil </span>
 				<div class="scrollable-div">
 					{#if prop_geom}
@@ -271,7 +278,7 @@
 					{/if}
 				</div>
 			</TabPane>
-			<TabPane tabId="weather" style="overflow: hidden; height:100%;">
+			<TabPane tabId="weather"  style="overflow: hidden; height:100%;">
 				<span class="text-black" slot="tab"> Weather </span>
 				<div class="scrollable-div">
 					{#if prop_geom}
@@ -280,16 +287,16 @@
 								<WeatherChart
 									series={[
 										{
-											name: 'Avg Temp',
+											name: 'Avg',
 											data: weatherData['tavg']
 										},
 
 										{
-											name: 'Min Temp',
+											name: 'Min',
 											data: weatherData['tmin']
 										},
 										{
-											name: 'Max Temp',
+											name: 'Max',
 											data: weatherData['tmax']
 										}
 									]}
@@ -368,6 +375,7 @@
 				</div>
 			</TabPane>
 		</TabContent>
+		  </div>
 	</div>
 </div>
 
