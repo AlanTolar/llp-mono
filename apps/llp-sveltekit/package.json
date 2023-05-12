@@ -63,6 +63,7 @@
 		"@netlify/functions": "^1.4.0",
 		"@paralleldrive/cuid2": "^2.2.0",
 		"@prisma/client": "^4.14.0",
+		"@prisma/engines-version": "4.15.0-2.8f088bba4367fa22d66dad3ff0c3a92ceded673e",
 		"@turf/turf": "^6.5.0",
 		"@types/geojson": "^7946.0.10",
 		"@uppy/core": "^3.2.0",
