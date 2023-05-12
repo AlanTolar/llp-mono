@@ -1,5 +1,4 @@
 import toGeoJSON from '@mapbox/togeojson';
-// import shp from 'shpjs';
 
 // export function shpToGeojson(file: File) {
 // 	const fileReader = new FileReader();

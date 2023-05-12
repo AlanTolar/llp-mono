@@ -3,8 +3,8 @@ import { z } from 'zod';
 import { prisma } from '$lib/server/prisma';
 import { error as errorKit, redirect } from '@sveltejs/kit';
 import { uploadJsonToS3 } from '$lib/server/s3/upload';
-import { nanoid } from 'nanoid';
-import { dev } from '$app/environment';
+import { init } from '@paralleldrive/cuid2';
+const cuid = init({ length:6 });
 
 export const load = (async ({ locals }) => {
 	const { user, session } = await locals.validateUser();
@@ -63,7 +63,7 @@ export const actions: Actions = {
 
 			const property = await prisma.property.create({
 				data: {
-					id: nanoid(6),
+					id: cuid(),
 					name: formData.title,
 					multi_polygon: geometries,
 					account: {

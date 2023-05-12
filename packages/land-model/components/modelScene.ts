@@ -1,5 +1,4 @@
 import * as BABYLON from 'babylonjs';
-import 'babylonjs-loaders';
 import { GLTF2Export } from 'babylonjs-serializers';
 import type { ParcelCoordinateHelper } from './parcelCoordinateHelper';
 import * as colorConvert from 'color-convert';

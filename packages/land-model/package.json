@@ -1,17 +1,29 @@
 {
-  "name": "land-model",
-  "version": "0.0.0",
-  "description": "Component for displaying Babylon.js scene of a 3D land model",
-  "type": "module",
-  "module": "index.ts",
-  "svelte": "index.ts",
-  "license": "MIT",
-  "scripts": {
-    "lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
-    "format": "prettier --write --ignore-path=../../.prettierignore ."
-  },
-  "devDependencies": {
-    "eslint-config-custom": "*",
-    "svelte": "^3.9.2"
-  }
+	"name": "land-model",
+	"version": "0.0.0",
+	"description": "Component for displaying Babylon.js scene of a 3D land model",
+	"type": "module",
+	"module": "index.ts",
+	"svelte": "index.ts",
+	"license": "MIT",
+	"scripts": {
+		"lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
+		"format": "prettier --write --ignore-path=../../.prettierignore .",
+		"preinstall": "npx only-allow pnpm"
+	},
+	"dependencies": {
+		"sveltestrap": "^5.10.0",
+		"stackblur-canvas": "^2.5.0",
+		"@prisma/client": "^4.11.0",
+		"babylonjs": "^5.42.2",
+		"babylonjs-serializers": "^5.44.0",
+		"color-convert": "^2.0.1",
+		"@mapbox/tilebelt": "^1.0.2",
+		"@turf/turf": "^6.5.0",
+		"fabric": "^5.3.0"
+	},
+	"devDependencies": {
+		"eslint-config-custom": "*",
+		"svelte": "^3.9.2"
+	}
 }

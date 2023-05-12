@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { conversionStore, hasActiveConversion, modifiedConversionStore } from './conversionStore';
-	import { PUBLIC_CDN_URL, PUBLIC_PUSHER_KEY, PUBLIC_PUSHER_CLUSTER } from '$env/static/public';
+	import { PUBLIC_CDN_URL } from '$env/static/public';
 	import { page } from '$app/stores';
 	import { onMount, onDestroy } from 'svelte';
 	import { bootstrapTooltip } from '$lib/scripts/bootstrap';

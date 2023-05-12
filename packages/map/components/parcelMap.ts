@@ -4,7 +4,6 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import * as turf from '@turf/turf';
 import { createNanoEvents } from 'nanoevents';
 import type { Emitter } from 'nanoevents';
-import { PUBLIC_MAPBOX_KEY, PUBLIC_REPORTALL_KEY } from '$env/static/public';
 
 interface ParcelEvents {
 	selected: (parcels: Parcels) => void;
@@ -59,7 +58,7 @@ export class Parcels {
 	public emitter: Emitter;
 	public features: ParcelFeatures[] = [];
 
-	constructor(private readonly map: Map) {
+	constructor(private readonly map: Map, private readonly reportallKey: string) {
 		this.map.map.on('load', () => {
 			this.addDataSource();
 			this.addClickLayer();
@@ -85,7 +84,7 @@ export class Parcels {
 		// add overlay api to map
 		const vectorUrl =
 			'https://reportallusa.com/api/rest_services/client=' +
-			PUBLIC_REPORTALL_KEY +
+			this.reportallKey +
 			'/ParcelsVectorTile/MapBoxVectorTileServer/tile/{z}/{x}/{y}.mvt';
 		this.map.map.addSource('parcels', {
 			type: 'vector',
@@ -139,7 +138,7 @@ export class Parcels {
 	requestParcel(robustId: string | number) {
 		const detailsUrl =
 			'https://reportallusa.com/api/rest_services/client=' +
-			PUBLIC_REPORTALL_KEY +
+			this.reportallKey +
 			'/Parcels/MapServer/0/query?where=robust_id=%27' +
 			robustId +
 			'%27&outSR=4326&f=geojson';
@@ -211,8 +210,8 @@ export class Parcels {
 export class Map {
 	public map: mapboxgl.Map;
 
-	constructor(containerId: string) {
-		mapboxgl.accessToken = PUBLIC_MAPBOX_KEY;
+	constructor(containerId: string, public readonly mapboxKey: string) {
+		mapboxgl.accessToken = this.mapboxKey;
 		this.map = new mapboxgl.Map({
 			container: containerId,
 			style: 'mapbox://styles/mapbox/satellite-v9',
@@ -333,10 +332,14 @@ export class Map {
 export class Geocoder {
 	public geocoder: MapboxGeocoder;
 
-	constructor(private map: Map, element: HTMLElement | undefined) {
+	constructor(
+		private map: Map,
+		public readonly mapboxKey: string,
+		element: HTMLElement | undefined
+	) {
 		if (element) {
 			this.geocoder = new MapboxGeocoder({
-				accessToken: PUBLIC_MAPBOX_KEY,
+				accessToken: this.mapboxKey,
 				countries: 'us',
 				flyTo: { zoom: 14, duration: 2000 },
 				placeholder: 'Ex: 123 Main Street',
@@ -345,7 +348,7 @@ export class Geocoder {
 			element.appendChild(this.geocoder.onAdd(this.map.map));
 		} else {
 			this.geocoder = new MapboxGeocoder({
-				accessToken: PUBLIC_MAPBOX_KEY
+				accessToken: this.mapboxKey
 			});
 			map.map.addControl(this.geocoder, 'top-right');
 		}

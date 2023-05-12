@@ -243,21 +243,19 @@ export const recentSave = writable(false);
 
 export function updateDB() {
 	if (!browser) return; // prevent running on server
-
 	const thisUpdateCalledAt = Date.now();
 	mostRecentUpdateTime = thisUpdateCalledAt;
-
 	const outboundData = {
 		scenes: get(sceneStore),
 		styles: get(styleStore)
 	};
-
+	const updatePath = `${window.location.pathname}/updateScenes`;
 	setTimeout(async function () {
 		// if another update has been called since this one, don't do anything
 		if (thisUpdateCalledAt !== mostRecentUpdateTime) return;
 
 		// update db
-		const response = await fetch(`${window.location.pathname}/updateScenes`, {
+		const response = await fetch(updatePath, {
 			method: 'POST',
 			body: JSON.stringify(outboundData),
 			headers: {

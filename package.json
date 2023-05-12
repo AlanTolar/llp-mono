@@ -1,21 +1,21 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write ."
-  },
-  "devDependencies": {
-    "eslint": "^8.0.0",
-    "eslint-config-custom": "*",
-    "prettier": "^2.7.1",
-    "prettier-plugin-svelte": "^2.7.0",
-    "turbo": "latest"
-  },
-  "packageManager": "npm@8.19.1",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint",
+		"format": "prettier --write .",
+		"preinstall": "npx only-allow pnpm"
+	},
+	"devDependencies": {
+		"eslint": "^8.0.0",
+		"eslint-config-custom": "workspace:*",
+		"prettier": "^2.7.1",
+		"prettier-plugin-svelte": "^2.7.0",
+		"turbo": "latest"
+	},
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	]
 }
