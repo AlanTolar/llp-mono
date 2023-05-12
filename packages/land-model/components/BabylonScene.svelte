@@ -258,7 +258,7 @@
 			</div>
 		</div>
 	{/if}
-	<!-- {#if fullscreenMode && isTouchDevice === false} -->
+	{#if fullscreenMode && isTouchDevice === false}
 	<button id="fullscreenButton" on:click={enterFullscreen}>
 		{#if isFullscreen}
 			<i class="bi bi-fullscreen-exit" />
@@ -266,7 +266,7 @@
 			<i class="bi bi-arrows-fullscreen" />
 		{/if}
 	</button>
-	<!-- {/if} -->
+	{/if}
 	{#if instructionsMode}
 		<div id="info-btn">
 			<i
