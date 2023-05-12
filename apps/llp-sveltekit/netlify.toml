@@ -9,3 +9,9 @@
   [headers.values]
     # Allows sandboxed iframe to be embedded into any site
     Access-Control-Allow-Origin = "*"
+
+[dev]
+  command = "pnpm run dev"
+  targetPort = 3002
+  port = 3005
+  publish = "static"
