@@ -31,7 +31,6 @@
 	let weatherData: { [key: string]: (number | null)[] } = {};
 
 	$: if (
-		infoTab === 'soil' &&
 		!soilData &&
 		propertyDetails?.latitude &&
 		propertyDetails?.longitude
