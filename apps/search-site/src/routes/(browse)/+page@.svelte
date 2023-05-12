@@ -140,10 +140,14 @@
 	</div>
 	<div
 		id="info-panel"
-		class="col-xl-5 col-md-6 d-flex flex-column flex-grow-0 flex-shrink-1"
+		class="col-xl-5 col-md-6 d-flex flex-column flex-grow-0 flex-shrink-1 position-relative p-0 m-0"
 		style="background-color:{backgroundColor};min-height:200px; max-height:100vh;"
 		class:h-100={infoFullscreen}
 	>
+	<div class="w-100 d-flex justify-content-center p-1 gap-1" role="group" aria-label="Basic example" >
+		<button type="button" class="btn btn-secondary border d-md-none  flex-grow-1"  on:click={()=>infoFullscreen=!infoFullscreen}>{infoFullscreen?'Back to Map':'View Info'}</button>
+		<button type="button" class="btn btn-secondary border  flex-grow-1" on:click={()=>alert('Currently no agents available through the app')}>Find Agent</button>
+	  </div>
 		<div id="model-container" class="ratio ratio-16x9 w-100" style="max-height:50vh;" class:d-none={infoFullscreen}>
 			{#key prop_geom || testBtn}
 				{#if prop_geom}
@@ -161,12 +165,9 @@
 			{/key}
 		</div>
 
-		<div class="btn-group w-100 p-3" role="group" aria-label="Basic example" >
-			<button type="button" class="btn btn-secondary border m-auto d-md-none" style="max-width:350px;" on:click={()=>infoFullscreen=!infoFullscreen}>{infoFullscreen?'Back to Map':'View Info'}</button>
-			<button type="button" class="btn btn-secondary border m-auto" style="max-width:350px;">Find Agent</button>
-		  </div>
 
-		  <div class="d-md-block d-flex flex-column flex-grow-1" class:d-none={!infoFullscreen} style="overflow: hidden;">
+
+		  <div class="d-md-block d-flex flex-column flex-grow-1 pt-3 px-2" class:d-none={!infoFullscreen} style="overflow: hidden;">
 		<TabContent
 			class="d-flex flex-column flex-grow-1"
 			style="overflow: hidden; height:100%;"
@@ -407,7 +408,8 @@
 	.scrollable-div {
 		overflow-y: scroll;
 		overflow-x: hidden;
-		padding: 20px;
+		padding-top: 20px;
+		padding-bottom: 20px;
 		flex-grow: 1;
 		height: 100%;
 	}
