@@ -5,10 +5,14 @@ import { prisma } from '$lib/server/prisma';
 import { z } from 'zod';
 import { userOwnsProperty } from '$lib/server/loadHelpers';
 
-export const load = (async ({ locals }) => {
+export const load = (async (event) => {
+	const { locals } = event;
 	const { user, session } = await locals.validateUser();
 	if (!(user && session)) {
-		throw errorKit(401, 'Unauthorized');
+		throw redirect(303, '/register', {
+			type: 'primary',
+			text: 'Sign up or login to use account page'
+		}, event);
 	}
 	if (!user.emailVerified) {
 		throw redirect(302, '/verification-status');
@@ -128,11 +132,9 @@ export const actions: Actions = {
 			console.log('error: ', typeof error);
 			throw errorKit(500, 'Internal Server Error');
 		}
-		// throw redirect(302, '/');
-		const message = {
+		throw redirect(302, '/', {
 			type: 'danger',
-			message: 'Account successfully deleted'
-		} as const;
-		throw redirect(302, '/', message, event);
+			text: 'Account successfully deleted'
+		}, event);
 	}
 };

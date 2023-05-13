@@ -1,15 +1,19 @@
 import type { PageServerLoad, Actions } from './$types';
 import { z } from 'zod';
 import { prisma } from '$lib/server/prisma';
-import { error as errorKit, redirect } from '@sveltejs/kit';
+import { error as errorKit } from '@sveltejs/kit';
 import { uploadJsonToS3 } from '$lib/server/s3/upload';
 import { init } from '@paralleldrive/cuid2';
-const cuid = init({ length:6 });
+import { redirect,  } from 'sveltekit-flash-message/server';
 
-export const load = (async ({ locals }) => {
+export const load = (async (event) => {
+	const { locals } = event;
 	const { user, session } = await locals.validateUser();
 	if (!(user && session)) {
-		throw errorKit(401, 'Unauthorized');
+		throw redirect(303, '/register', {
+			type: 'primary',
+			text: 'Sign up or login to select a property'
+		}, event);
 	}
 	if (!user.emailVerified) {
 		throw redirect(302, '/verification-status');
@@ -27,7 +31,7 @@ const selectPropertySchema = z.object({
 type SelectPropertyData = z.infer<typeof selectPropertySchema>;
 
 export const actions: Actions = {
-	selectProperty: async ({ request, locals, url, fetch }) => {
+	selectProperty: async ({ request, locals }) => {
 		const { user, session } = await locals.validateUser();
 		if (!(user && session)) {
 			throw errorKit(401, 'Unauthorized');
@@ -61,6 +65,7 @@ export const actions: Actions = {
 			const freeAccess =
 				updatedUser.free_properties >= 0 || ['ADMIN', 'FREEBIES'].includes(user.role);
 
+			const cuid = init({ length:6 });
 			const property = await prisma.property.create({
 				data: {
 					id: cuid(),

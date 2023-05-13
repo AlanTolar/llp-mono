@@ -11,7 +11,7 @@ declare global {
 			demoProperty: boolean;
 		}
 		interface PageData {
-			flash?: { type: 'success' | 'danger'; message: string };
+			flash?: { type: 'success' | 'danger' | 'warning' | 'primary' | 'secondary'; text: string };
 		}
 		// interface Platform {}
 	}

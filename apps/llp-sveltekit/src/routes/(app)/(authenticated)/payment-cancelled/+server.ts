@@ -2,9 +2,8 @@ import type { RequestHandler } from './$types';
 import { redirect } from 'sveltekit-flash-message/server';
 
 export const GET: RequestHandler = async (event) => {
-	const message = {
+	throw redirect(302, '/account', {
 		type: 'danger',
-		message: 'Exited checkout process'
-	} as const;
-	throw redirect(302, '/account', message, event);
+		text: 'Exited checkout process'
+	}, event);
 };

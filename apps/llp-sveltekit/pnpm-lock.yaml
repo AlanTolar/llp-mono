@@ -127,7 +127,7 @@ devDependencies:
     specifier: ^1.0.1
     version: 1.0.5(@sveltejs/kit@1.16.3)
   '@sveltejs/kit':
-    specifier: ^1.10.0
+    specifier: ^1.16.3
     version: 1.16.3(svelte@3.59.1)(vite@4.3.5)
   '@tailwindcss/forms':
     specifier: ^0.5.2

@@ -66,10 +66,9 @@ export const actions: Actions = {
 			return fail(400, { error: 'Invalid credentials', message: 'Could not reset password' });
 		}
 
-		const message = {
+		throw redirect(302, '/account', {
 			type: 'success',
-			message: 'Password successfully changed'
-		} as const;
-		throw redirect(302, '/account', message, event);
+			text: 'Password successfully changed'
+		}, event);
 	}
 };
