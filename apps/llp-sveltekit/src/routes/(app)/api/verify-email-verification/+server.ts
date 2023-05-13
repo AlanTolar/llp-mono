@@ -2,9 +2,11 @@ import type { RequestHandler } from './$types';
 import { emailVerificationToken } from '$lib/server/token.js';
 import { auth } from '$lib/server/lucia.js';
 import { LuciaTokenError } from '@lucia-auth/tokens';
-import { error, redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
+import { redirect } from 'sveltekit-flash-message/server';
 
-export const GET: RequestHandler = async ({ url, locals }) => {
+export const GET: RequestHandler = async (event) => {
+	const { url, locals } = event;
 	const tokenParams = url.searchParams.get('token');
 	if (!tokenParams) throw error(400, 'Missing token');
 
@@ -27,5 +29,8 @@ export const GET: RequestHandler = async ({ url, locals }) => {
 		throw error(400, 'Invalid token');
 	}
 
-	throw redirect(302, '/account');
+	throw redirect(302, '/account', {
+		type: 'success',
+		text: 'Successfully verified email address! Select a property to get started.'
+	}, event);
 };

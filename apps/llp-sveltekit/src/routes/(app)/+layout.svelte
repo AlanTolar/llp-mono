@@ -1,16 +1,20 @@
 <script lang="ts">
-	import { initFlash } from 'sveltekit-flash-message/client';
+	import { initFlash, updateFlash } from 'sveltekit-flash-message/client';
 	import { page } from '$app/stores';
 	import type { PageData } from './$types';
-	import { beforeNavigate } from '$app/navigation';
+	import { beforeNavigate, afterNavigate } from '$app/navigation';
 	export let data: PageData;
 
 	const flash = initFlash(page);
-	beforeNavigate((nav) => {
+	beforeNavigate(async (nav) => {
 		if ($flash && nav.from?.url.toString() != nav.to?.url.toString()) {
 			$flash = undefined;
-		}
+		} 
 	});
+	afterNavigate(async()=>{
+		await updateFlash(page);
+	})
+	
 	$: console.log({$flash})
 
 	let navBarElement: HTMLElement;
@@ -61,7 +65,7 @@
 	</nav>
 	{#if $flash}
 		<div
-			class="flash alert alert-primary alert-dismissible fade show text-center"
+			class="flash alert alert-{$flash.type} alert-dismissible fade show text-center"
 			role="alert"
 		>
 			{$flash.text}

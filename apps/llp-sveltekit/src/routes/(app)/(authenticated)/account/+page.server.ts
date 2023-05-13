@@ -9,8 +9,7 @@ export const load = (async (event) => {
 	const { locals } = event;
 	const { user, session } = await locals.validateUser();
 	if (!(user && session)) {
-		// throw errorKit(401, 'Unauthorized');
-		throw redirect(302, '/register', {
+		throw redirect(303, '/register', {
 			type: 'primary',
 			text: 'Sign up or login to use account page'
 		}, event);
