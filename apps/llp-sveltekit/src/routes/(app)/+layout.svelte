@@ -11,6 +11,7 @@
 			$flash = undefined;
 		}
 	});
+	$: console.log({$flash})
 
 	let navBarElement: HTMLElement;
 	function closeNavbar() {
@@ -59,13 +60,11 @@
 		</div>
 	</nav>
 	{#if $flash}
-		{@const bg = $flash.type == 'success' ? '#3D9970' : '#FF4136'}
-		<!-- <div style:background-color={bg} class="flash">{$flash.message}</div> -->
 		<div
-			class="flash alert alert-{$flash.type} alert-dismissible fade show text-center"
+			class="flash alert alert-primary alert-dismissible fade show text-center"
 			role="alert"
 		>
-			{$flash.message}
+			{$flash.text}
 			<button type="button" class="btn-close me-auto" data-bs-dismiss="alert" aria-label="Close" />
 		</div>
 	{/if}
